@@ -33,7 +33,7 @@ class InputParser {
 
     int[] getNumberArgs() {
         if ("".equals(origInput)) {
-            return new int[]{0};
+            return new int[0];
         }
         String numberInput = getNumberInput();
         String delimiter = getDelimiter();
