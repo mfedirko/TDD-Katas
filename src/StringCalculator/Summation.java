@@ -6,7 +6,13 @@ public class Summation {
 
     public static final int MAX_NUM = 999;
 
-    int getSum(int[] args) {
+    private final int[] args;
+
+    public Summation(int[] args) {
+        this.args = args;
+    }
+
+    int getSum() {
         checkForNegatives(args);
         return Arrays.stream(args)
                 .filter(num -> num <= MAX_NUM)

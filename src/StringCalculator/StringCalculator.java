@@ -7,7 +7,7 @@ public class StringCalculator {
     public int add(String s) {
         calledCount++;
         int[] args = new InputParser(s).getNumberArgs();
-        return new Summation().getSum(args);
+        return new Summation(args).getSum();
     }
 
 
