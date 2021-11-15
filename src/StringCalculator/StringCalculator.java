@@ -6,9 +6,6 @@ public class StringCalculator {
 
     public int add(String s) {
         calledCount++;
-        if ("".equals(s)) {
-            return 0;
-        }
         int[] args = new InputParser(s).getNumberArgs();
         return new Summation().getSum(args);
     }
