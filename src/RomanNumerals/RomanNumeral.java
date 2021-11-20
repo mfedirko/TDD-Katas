@@ -13,9 +13,9 @@ public class RomanNumeral {
     private String buildString() {
         StringBuilder sb = new StringBuilder();
         int num = this.baseTen;
-        for (NumeralSymbol sym : NumeralSymbol.values())
-            for (; num >= sym.baseTen; num -= sym.baseTen)
-                sb.append(sym.name());
+        for (NumeralSubstitution sub : NumeralSubstitution.values())
+            for (; num >= sub.baseTen; num -= sub.baseTen)
+                sb.append(sub.name());
         return sb.toString();
     }
 
@@ -27,7 +27,7 @@ public class RomanNumeral {
         return this.str;
     }
 
-    private enum NumeralSymbol {
+    private enum NumeralSubstitution {
         M(1000),
         CM(900),
         D(500),
@@ -43,11 +43,8 @@ public class RomanNumeral {
         I(1);
 
         final int baseTen;
-        NumeralSymbol(final int baseTen) {
+        NumeralSubstitution(final int baseTen) {
             this.baseTen = baseTen;
-        }
-        boolean isSubstitution() {
-            return name().length() > 1;
         }
     }
 }
