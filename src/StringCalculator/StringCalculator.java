@@ -5,7 +5,7 @@ public class StringCalculator {
         if ("".equals(s)) {
             return 0;
         }
-        String[] args = s.split(",");
+        String[] args = s.split("(,|\\n)");
         int res = 0;
         for (String arg : args) {
             res += Integer.parseInt(arg);

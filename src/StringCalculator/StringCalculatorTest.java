@@ -69,4 +69,10 @@ public class StringCalculatorTest {
 
         assertEquals(5 + 23 + 56 + 21 + 645 + 43, sum);
     }
+    @Test
+    public void whenSplitByNewline_retSum() {
+        int sum = calc.add("5\n23\n56\n21\n645\n43");
+
+        assertEquals(5 + 23 + 56 + 21 + 645 + 43, sum);
+    }
 }
