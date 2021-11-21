@@ -123,4 +123,12 @@ public class StringCalculatorTest {
 
         assertEquals(0, c);
     }
+    @Test
+    public void whenCalledOneTimes_thenGetCalledCountIs1() {
+        calc.add("");
+
+        int c = calc.getCalledCount();
+
+        assertEquals(1, c);
+    }
 }

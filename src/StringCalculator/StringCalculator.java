@@ -5,7 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class StringCalculator {
+    private int calledCount = 0;
+
     public int add(String s) {
+        calledCount = 1;
         return getSum(parseInput(s));
     }
 
@@ -39,6 +42,6 @@ public class StringCalculator {
     }
 
     public int getCalledCount() {
-        return 0;
+        return calledCount;
     }
 }
