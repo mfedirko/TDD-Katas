@@ -8,7 +8,7 @@ public class StringCalculator {
     private int calledCount = 0;
 
     public int add(String s) {
-        calledCount = 1;
+        calledCount++;
         return getSum(parseInput(s));
     }
 

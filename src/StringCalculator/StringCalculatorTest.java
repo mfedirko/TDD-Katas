@@ -131,4 +131,15 @@ public class StringCalculatorTest {
 
         assertEquals(1, c);
     }
+    @Test
+    public void whenCalledNTimes_thenGetCalledCountIsN() {
+        final int n = 15;
+        for (int i = 0; i < n; i++) {
+            calc.add("");
+        }
+
+        int c = calc.getCalledCount();
+
+        assertEquals(n, c);
+    }
 }
