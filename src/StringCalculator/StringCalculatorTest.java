@@ -155,4 +155,11 @@ public class StringCalculatorTest {
 
         assertEquals(1 + 43 + 29, sum);
     }
+
+    @Test
+    public void multiLengthDelimiter() {
+        int sum = calc.add("//[***]\n1***2***3");
+
+        assertEquals(1 + 2 + 3, sum);
+    }
 }
