@@ -19,4 +19,10 @@ public class StringCalculatorTest {
 
         assertEquals(1, sum);
     }
+    @Test
+    public void when2_ret2() {
+        int sum = calc.add("2");
+
+        assertEquals(2, sum);
+    }
 }
