@@ -43,4 +43,10 @@ public class StringCalculatorTest {
 
         assertEquals(5, sum);
     }
+    @Test
+    public void when3Args_retSum() {
+        int sum = calc.add("1,5,7");
+
+        assertEquals(1 + 5 + 7, sum);
+    }
 }
