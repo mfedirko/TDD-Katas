@@ -21,19 +21,22 @@ public class StringCalculator {
     }
 
     private int getSum(String[] args) {
-        List<Integer> negatives = new ArrayList<>();
-        int sum = Arrays.stream(args)
+        checkForNegatives(args);
+        return Arrays.stream(args)
                 .filter(a -> !a.isEmpty())
                 .mapToInt(Integer::parseInt)
-                .peek(a -> {
-                    if (a < 0) {
-                        negatives.add(a);
-                    }
-                })
                 .sum();
+    }
+
+    private void checkForNegatives(String[] args) {
+        List<Integer> negatives = new ArrayList<>();
+        Arrays.stream(args)
+                .filter(a -> !a.isEmpty())
+                .mapToInt(Integer::parseInt)
+                .filter(a -> a < 0)
+                .forEach(negatives::add);
         if (!negatives.isEmpty()) {
             throw new IllegalArgumentException("Negative input not allowed. Found: " + negatives);
         }
-        return sum;
     }
 }
