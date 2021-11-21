@@ -1,8 +1,10 @@
 package StringCalculator;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class StringCalculatorTest {
     private StringCalculator calc = new StringCalculator();
@@ -88,5 +90,15 @@ public class StringCalculatorTest {
     public void customDelimiter() {
         int sum = calc.add("//;\n1;2");
         assertEquals(1 + 2, sum);
+    }
+    @Test
+    public void negNumThrowsException() {
+        try {
+            calc.add("1,-3,4,5");
+            Assert.fail("Expected exception for negative");
+        } catch (Exception ex) {
+            assertTrue("Expected exception to contain num -3",
+                    ex.getMessage().contains("-3"));
+        }
     }
 }

@@ -22,6 +22,9 @@ public class StringCalculator {
         return Arrays.stream(args)
                 .filter(a -> !a.isEmpty())
                 .mapToInt(Integer::parseInt)
+                .peek(a -> {
+                    if (a < 0) throw new IllegalArgumentException("Negative numbers not supported. Found: " + a);
+                })
                 .sum();
     }
 }
