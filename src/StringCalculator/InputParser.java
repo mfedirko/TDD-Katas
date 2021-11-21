@@ -17,12 +17,32 @@ class InputParser {
         return toNumArray(getDelimiter(), getNumbersPart());
     }
 
+    private int[] toNumArray(String delim, String numPart) {
+        return Arrays.stream(numPart.split(delim))
+                .filter(a -> !a.isEmpty())
+                .mapToInt(Integer::parseInt)
+                .toArray();
+    }
+
     private String getNumbersPart() {
-        if (hasCustomDelimiter(input)) {
+        if (hasCustomDelimiter()) {
             return input.substring(1 + getEndOfDelimiter());
         } else {
             return input;
         }
+    }
+
+    private String getDelimiter() {
+        if (hasCustomDelimiter()) {
+            String delimiterPart = input.substring(getStartOfDelimiter(), getEndOfDelimiter());
+            return delimiterPart.replace("][", "]|[");
+        } else {
+            return DEFAULT_DELIMITER;
+        }
+    }
+
+    private boolean hasCustomDelimiter() {
+        return input.startsWith(CUSTOM_DELIMITER_PREFIX);
     }
 
     private int getEndOfDelimiter() {
@@ -33,23 +53,4 @@ class InputParser {
         return CUSTOM_DELIMITER_PREFIX.length();
     }
 
-    private String getDelimiter() {
-        if (hasCustomDelimiter(input)) {
-            String delimiterPart = input.substring(getStartOfDelimiter(), getEndOfDelimiter());
-            return delimiterPart.replace("][", "]|[");
-        } else {
-            return DEFAULT_DELIMITER;
-        }
-    }
-
-    private int[] toNumArray(String delim, String numPart) {
-        return Arrays.stream(numPart.split(delim))
-                .filter(a -> !a.isEmpty())
-                .mapToInt(Integer::parseInt)
-                .toArray();
-    }
-
-    private static boolean hasCustomDelimiter(String s) {
-        return s.startsWith(CUSTOM_DELIMITER_PREFIX);
-    }
 }
