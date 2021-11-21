@@ -25,4 +25,10 @@ public class StringCalculatorTest {
 
         assertEquals(2, sum);
     }
+    @Test
+    public void whenN_retN() {
+        int sum = calc.add("4324");
+
+        assertEquals(4324, sum);
+    }
 }
