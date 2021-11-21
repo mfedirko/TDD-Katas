@@ -117,4 +117,10 @@ public class StringCalculatorTest {
                     ex.getMessage().contains("-1"));
         }
     }
+    @Test
+    public void whenCalledZeroTimes_thenGetCalledCountIs0() {
+        int c = calc.getCalledCount();
+
+        assertEquals(0, c);
+    }
 }

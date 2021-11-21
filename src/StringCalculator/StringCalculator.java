@@ -37,4 +37,8 @@ public class StringCalculator {
             throw new IllegalArgumentException("Negative input not allowed. Found: " + negatives);
         }
     }
+
+    public int getCalledCount() {
+        return 0;
+    }
 }
