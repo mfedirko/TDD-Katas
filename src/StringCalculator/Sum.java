@@ -8,6 +8,7 @@ class Sum {
     static int getSum(int[] args) {
         checkForNegatives(args);
         return Arrays.stream(args)
+                .filter(i -> i <= 1000)
                 .sum();
     }
     private static void checkForNegatives(int[] args) {

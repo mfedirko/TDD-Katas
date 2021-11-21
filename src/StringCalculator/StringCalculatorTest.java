@@ -89,6 +89,7 @@ public class StringCalculatorTest {
     @Test
     public void customDelimiter() {
         int sum = calc.add("//;\n1;2");
+
         assertEquals(1 + 2, sum);
     }
     @Test
@@ -141,5 +142,11 @@ public class StringCalculatorTest {
         int c = calc.getCalledCount();
 
         assertEquals(n, c);
+    }
+    @Test
+    public void whenNumGreaterThan1000_thenIgnore() {
+        int sum = calc.add("1,1001,43,2000,29");
+
+        assertEquals(1 + 43 + 29, sum);
     }
 }
