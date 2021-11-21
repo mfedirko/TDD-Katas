@@ -5,7 +5,7 @@ public class StringCalculator {
 
     public int add(String s) {
         callCounter.increment();
-        return Sum.getSum(new InputParser(s).parse());
+        return Sum.of(new InputParser(s).parse());
     }
 
     public int getCalledCount() {

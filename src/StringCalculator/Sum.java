@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.function.IntPredicate;
 
 class Sum {
-    static int getSum(int[] args) {
+    static int of(int[] args) {
         checkForNegatives(args);
         return Arrays.stream(args)
                 .filter(ignoreLargeNums())
