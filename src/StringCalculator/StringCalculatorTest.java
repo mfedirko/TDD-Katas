@@ -13,4 +13,10 @@ public class StringCalculatorTest {
 
         assertEquals(0, sum);
     }
+    @Test
+    public void when1_ret1() {
+        int sum = calc.add("1");
+
+        assertEquals(1, sum);
+    }
 }
