@@ -69,16 +69,24 @@ public class StringCalculatorTest {
 
         assertEquals(5 + 23 + 56 + 21 + 645 + 43, sum);
     }
+
     @Test
     public void whenSplitByNewline_retSum() {
         int sum = calc.add("5\n23\n56\n21\n645\n43");
 
         assertEquals(5 + 23 + 56 + 21 + 645 + 43, sum);
     }
+
     @Test
     public void whenSplitByMixedNewlineComma_retSum() {
         int sum = calc.add("5\n23,56\n21,645\n43");
 
         assertEquals(5 + 23 + 56 + 21 + 645 + 43, sum);
+    }
+
+    @Test
+    public void customDelimiter() {
+        int sum = calc.add("//;\n1;2");
+        assertEquals(1 + 2, sum);
     }
 }
