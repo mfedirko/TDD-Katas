@@ -169,4 +169,11 @@ public class StringCalculatorTest {
 
         assertEquals(1 + 2 + 3, sum);
     }
+
+    @Test
+    public void multiplePossibleMultiLengthCustomDelimiters() {
+        int sum = calc.add("//[**][%%%]\n1**2%%%3**4");
+
+        assertEquals(1 + 2 + 3 + 4, sum);
+    }
 }
