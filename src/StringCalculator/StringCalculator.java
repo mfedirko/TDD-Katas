@@ -1,6 +1,8 @@
 package StringCalculator;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class StringCalculator {
     public int add(String s) {
@@ -19,12 +21,19 @@ public class StringCalculator {
     }
 
     private int getSum(String[] args) {
-        return Arrays.stream(args)
+        List<Integer> negatives = new ArrayList<>();
+        int sum = Arrays.stream(args)
                 .filter(a -> !a.isEmpty())
                 .mapToInt(Integer::parseInt)
                 .peek(a -> {
-                    if (a < 0) throw new IllegalArgumentException("Negative numbers not supported. Found: " + a);
+                    if (a < 0) {
+                        negatives.add(a);
+                    }
                 })
                 .sum();
+        if (!negatives.isEmpty()) {
+            throw new IllegalArgumentException("Negative input not allowed. Found: " + negatives);
+        }
+        return sum;
     }
 }

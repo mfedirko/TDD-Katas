@@ -101,4 +101,20 @@ public class StringCalculatorTest {
                     ex.getMessage().contains("-3"));
         }
     }
+    @Test
+    public void whenMultipleNegNums_thenThrowsException() {
+        try {
+            calc.add("1,-3,-4,-7,5,2,3,-1,5");
+            Assert.fail("Expected exception for negative");
+        } catch (Exception ex) {
+            assertTrue("Expected exception to contain num -3",
+                    ex.getMessage().contains("-3"));
+            assertTrue("Expected exception to contain num -4",
+                    ex.getMessage().contains("-4"));
+            assertTrue("Expected exception to contain num -7",
+                    ex.getMessage().contains("-7"));
+            assertTrue("Expected exception to contain num -1",
+                    ex.getMessage().contains("-1"));
+        }
+    }
 }
