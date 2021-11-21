@@ -6,33 +6,31 @@ import java.util.List;
 
 public class StringCalculator {
     public int add(String s) {
-        String[] args = parseInput(s);
-        return getSum(args);
+        return getSum(parseInput(s));
     }
 
-    private String[] parseInput(String s) {
+    private int[] parseInput(String s) {
         String delim = "(,|\\n)";
         String nums = s;
         if (s.startsWith("//")) {
             delim = s.substring(2,3);
             nums = s.substring(4);
         }
-        return nums.split(delim);
-    }
-
-    private int getSum(String[] args) {
-        checkForNegatives(args);
-        return Arrays.stream(args)
+        return Arrays.stream(nums.split(delim))
                 .filter(a -> !a.isEmpty())
                 .mapToInt(Integer::parseInt)
+                .toArray();
+    }
+
+    private int getSum(int[] args) {
+        checkForNegatives(args);
+        return Arrays.stream(args)
                 .sum();
     }
 
-    private void checkForNegatives(String[] args) {
+    private void checkForNegatives(int[] args) {
         List<Integer> negatives = new ArrayList<>();
         Arrays.stream(args)
-                .filter(a -> !a.isEmpty())
-                .mapToInt(Integer::parseInt)
                 .filter(a -> a < 0)
                 .forEach(negatives::add);
         if (!negatives.isEmpty()) {
