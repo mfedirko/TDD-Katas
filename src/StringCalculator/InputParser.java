@@ -14,18 +14,18 @@ class InputParser {
     }
 
     int[] parse() {
-        return getNumbers(getDelimiter(), getNumbersPart());
+        return toNumArray(getDelimiter(), getNumbersPart());
     }
 
     private String getNumbersPart() {
         if (hasCustomDelimiter(input)) {
-            return input.substring(1 + getEndOfDelimeter());
+            return input.substring(1 + getEndOfDelimiter());
         } else {
             return input;
         }
     }
 
-    private int getEndOfDelimeter() {
+    private int getEndOfDelimiter() {
         return input.indexOf(CUSTOM_DELIMITER_SUFFIX);
     }
 
@@ -35,13 +35,14 @@ class InputParser {
 
     private String getDelimiter() {
         if (hasCustomDelimiter(input)) {
-            return input.substring(getStartOfDelimiter(), getEndOfDelimeter());
+            String delimiterPart = input.substring(getStartOfDelimiter(), getEndOfDelimiter());
+            return delimiterPart.replace("][", "]|[");
         } else {
             return DEFAULT_DELIMITER;
         }
     }
 
-    private int[] getNumbers(String delim, String numPart) {
+    private int[] toNumArray(String delim, String numPart) {
         return Arrays.stream(numPart.split(delim))
                 .filter(a -> !a.isEmpty())
                 .mapToInt(Integer::parseInt)

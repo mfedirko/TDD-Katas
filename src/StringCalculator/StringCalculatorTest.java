@@ -162,4 +162,11 @@ public class StringCalculatorTest {
 
         assertEquals(1 + 2 + 3, sum);
     }
+
+    @Test
+    public void multiplePossibleCustomDelimiters() {
+        int sum = calc.add("//[*][%]\n1*2%3");
+
+        assertEquals(1 + 2 + 3, sum);
+    }
 }
