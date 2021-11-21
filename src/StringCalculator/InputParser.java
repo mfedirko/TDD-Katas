@@ -3,10 +3,16 @@ package StringCalculator;
 import java.util.Arrays;
 
 class InputParser {
-    static int[] parseInput(String s) {
+    private final String s;
+
+    InputParser(String s) {
+        this.s = s;
+    }
+
+    int[] parse() {
         String delim = "(,|\\n)";
         String nums = s;
-        if (s.startsWith("//")) {
+        if (hasCustomDelimiter(s)) {
             final int endOfDelim = s.indexOf('\n');
             delim = s.substring(2,endOfDelim);
             nums = s.substring(1 + endOfDelim);
@@ -15,5 +21,9 @@ class InputParser {
                 .filter(a -> !a.isEmpty())
                 .mapToInt(Integer::parseInt)
                 .toArray();
+    }
+
+    private static boolean hasCustomDelimiter(String s) {
+        return s.startsWith("//");
     }
 }
