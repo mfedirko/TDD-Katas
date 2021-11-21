@@ -14,15 +14,31 @@ class InputParser {
     }
 
     int[] parse() {
-        String delim = DEFAULT_DELIMITER;
-        String numPart = input;
+        return getNumbers(getDelimiter(), getNumbersPart());
+    }
+
+    private String getNumbersPart() {
         if (hasCustomDelimiter(input)) {
-            final int startOfDelim = CUSTOM_DELIMITER_PREFIX.length();
-            final int endOfDelim = input.indexOf(CUSTOM_DELIMITER_SUFFIX);
-            delim = input.substring(startOfDelim, endOfDelim);
-            numPart = input.substring(1 + endOfDelim);
+            return input.substring(1 + getEndOfDelimeter());
+        } else {
+            return input;
         }
-        return getNumbers(delim, numPart);
+    }
+
+    private int getEndOfDelimeter() {
+        return input.indexOf(CUSTOM_DELIMITER_SUFFIX);
+    }
+
+    private int getStartOfDelimiter() {
+        return CUSTOM_DELIMITER_PREFIX.length();
+    }
+
+    private String getDelimiter() {
+        if (hasCustomDelimiter(input)) {
+            return input.substring(getStartOfDelimiter(), getEndOfDelimeter());
+        } else {
+            return DEFAULT_DELIMITER;
+        }
     }
 
     private int[] getNumbers(String delim, String numPart) {
