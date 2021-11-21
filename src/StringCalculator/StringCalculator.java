@@ -1,15 +1,13 @@
 package StringCalculator;
 
+import java.util.Arrays;
+
 public class StringCalculator {
     public int add(String s) {
-        if ("".equals(s)) {
-            return 0;
-        }
         String[] args = s.split("(,|\\n)");
-        int res = 0;
-        for (String arg : args) {
-            res += Integer.parseInt(arg);
-        }
-        return res;
+        return Arrays.stream(args)
+                .filter(a -> !a.isEmpty())
+                .mapToInt(Integer::parseInt)
+                .sum();
     }
 }
