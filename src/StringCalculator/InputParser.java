@@ -7,8 +7,9 @@ class InputParser {
         String delim = "(,|\\n)";
         String nums = s;
         if (s.startsWith("//")) {
-            delim = s.substring(2,3);
-            nums = s.substring(4);
+            final int endOfDelim = s.indexOf('\n');
+            delim = s.substring(2,endOfDelim);
+            nums = s.substring(1 + endOfDelim);
         }
         return Arrays.stream(nums.split(delim))
                 .filter(a -> !a.isEmpty())

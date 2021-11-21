@@ -32,9 +32,9 @@ public class StringCalculatorTest {
 
     @Test
     public void whenN_retN() {
-        int sum = calc.add("4324");
+        int sum = calc.add("23");
 
-        assertEquals(4324, sum);
+        assertEquals(23, sum);
     }
 
     @Test
@@ -92,6 +92,7 @@ public class StringCalculatorTest {
 
         assertEquals(1 + 2, sum);
     }
+
     @Test
     public void negNumThrowsException() {
         try {
@@ -102,6 +103,7 @@ public class StringCalculatorTest {
                     ex.getMessage().contains("-3"));
         }
     }
+
     @Test
     public void whenMultipleNegNums_thenThrowsException() {
         try {
@@ -118,12 +120,14 @@ public class StringCalculatorTest {
                     ex.getMessage().contains("-1"));
         }
     }
+
     @Test
     public void whenCalledZeroTimes_thenGetCalledCountIs0() {
         int c = calc.getCalledCount();
 
         assertEquals(0, c);
     }
+
     @Test
     public void whenCalledOneTimes_thenGetCalledCountIs1() {
         calc.add("");
@@ -132,6 +136,7 @@ public class StringCalculatorTest {
 
         assertEquals(1, c);
     }
+
     @Test
     public void whenCalledNTimes_thenGetCalledCountIsN() {
         final int n = 15;
@@ -143,6 +148,7 @@ public class StringCalculatorTest {
 
         assertEquals(n, c);
     }
+
     @Test
     public void whenNumGreaterThan1000_thenIgnore() {
         int sum = calc.add("1,1001,43,2000,29");
