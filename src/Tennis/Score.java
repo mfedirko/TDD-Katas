@@ -28,17 +28,19 @@ public class Score {
 
 
     private String translate(int points) {
-        if (points == 0) {
-            return "Love";
-        } else if (points == 1) {
-            return "Fifteen";
-        } else if (points == 2) {
-            return "Thirty";
-        } else if (points == 3) {
-            return "Forty";
+        switch (points) {
+            case 0:
+                return "Love";
+            case 1:
+                return "Fifteen";
+            case 2:
+                return "Thirty";
+            case 3:
+                return "Forty";
+            default:
+                throw new IllegalStateException("Invalid usage of translate(" + points + "). " +
+                        " Either deuce, advantage or winner must be present for points > 3");
         }
-        throw new IllegalStateException("Invalid usage of translate(" + points + "). " +
-                " Either deuce, advantage or winner must be present for points > 3");
     }
 
 }
