@@ -15,6 +15,7 @@
         <module>PrimeFactors</module>
         <module>RomanNumerals</module>
         <module>StringCalculator</module>
+        <module>Ohce</module>
     </modules>
 
     <properties>
