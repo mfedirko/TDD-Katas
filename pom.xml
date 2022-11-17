@@ -16,6 +16,7 @@
         <module>RomanNumerals</module>
         <module>StringCalculator</module>
         <module>Ohce</module>
+        <module>Bowling</module>
     </modules>
 
     <properties>
