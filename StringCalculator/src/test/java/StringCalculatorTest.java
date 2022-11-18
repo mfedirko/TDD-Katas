@@ -99,17 +99,8 @@ public class StringCalculatorTest {
     }
 
     @Test
-    @Disabled
-    void threeCharDelimiter() {
-        int res = calculator.add("//[***]\n1***2***3");
-
-        assertEquals(6, res);
-    }
-
-    @Test
-    @Disabled
-    void fourCharDelimiter() {
-        int res = calculator.add("//[****]\n1****2****3");
+    void multiCharDelimiter() {
+        int res = calculator.add("//[*****]\n1*****2*****3");
 
         assertEquals(6, res);
     }

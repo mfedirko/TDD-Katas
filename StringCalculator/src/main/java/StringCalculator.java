@@ -14,13 +14,20 @@ public class StringCalculator {
     public int add(String s) {
         calledCount++;
         if (s.isEmpty()) return 0;
-        if (s.startsWith("//")) {
-            final int prefixLength = 4;
-            final String nums = s.substring(prefixLength);
-            final String delimiter = s.substring(2, 3);
-            return sum(nums, Pattern.compile(Pattern.quote(delimiter)));
+        if (s.startsWith("//[")) {
+            return sumForCustomDelimiter(s, s.indexOf("\n") + 1, 3, s.indexOf("\n") + 1 - 2);
+        } else if (s.startsWith("//")) {
+            return sumForCustomDelimiter(s, 4, 2, 3);
+        } else {
+            return sum(s, Pattern.compile(",|\n"));
         }
-        return sum(s, Pattern.compile(",|\n"));
+    }
+
+    private int sumForCustomDelimiter(String s, int prefixLength, int delimStart, int delimEnd) {
+        final String nums = s.substring(prefixLength);
+        final String delimiter = s.substring(delimStart, delimEnd);
+        Pattern delimiterPattern = Pattern.compile(Pattern.quote(delimiter));
+        return sum(nums, delimiterPattern);
     }
 
     private int sum(String s, Pattern separator) {
