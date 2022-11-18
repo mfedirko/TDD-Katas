@@ -4,20 +4,20 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StringCalculatorTest {
-
-    @Test
-    void canAdd() {
-        StringCalculator calculator = new StringCalculator();
-        int res = calculator.add("");
-    }
+    StringCalculator calculator = new StringCalculator();
 
     @Test
     void sum0_forEmptyStr() {
-        StringCalculator calculator = new StringCalculator();
-
         int res = calculator.add("");
 
         assertEquals(0, res);
+    }
+
+    @Test
+    void sumForLiteral() {
+        int res = calculator.add("5");
+
+        assertEquals(5, res);
     }
 
 }
