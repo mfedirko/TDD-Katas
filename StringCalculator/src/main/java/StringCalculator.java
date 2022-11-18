@@ -1,10 +1,12 @@
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class StringCalculator {
+    public static final String DEFAULT_DELIMITER = ",|\n";
     private int calledCount;
 
     public int getCalledCount() {
@@ -14,20 +16,56 @@ public class StringCalculator {
     public int add(String s) {
         calledCount++;
         if (s.isEmpty()) return 0;
-        if (s.startsWith("//[")) {
-            return sumForCustomDelimiter(s, s.indexOf("\n") + 1, 3, s.indexOf("\n") + 1 - 2);
-        } else if (s.startsWith("//")) {
-            return sumForCustomDelimiter(s, 4, 2, 3);
-        } else {
-            return sum(s, Pattern.compile(",|\n"));
-        }
+        String nums = removeDelimiterPrefix(s);
+        Pattern delimiterPattern = getDelimiter(s);
+        return sum(nums, delimiterPattern);
+
     }
 
-    private int sumForCustomDelimiter(String s, int prefixLength, int delimStart, int delimEnd) {
-        final String nums = s.substring(prefixLength);
-        final String delimiter = s.substring(delimStart, delimEnd);
-        Pattern delimiterPattern = Pattern.compile(Pattern.quote(delimiter));
-        return sum(nums, delimiterPattern);
+    private Pattern getDelimiter(String s) {
+        Pattern delimiterPattern;
+        if (s.startsWith("//[")) {
+            delimiterPattern = getCustomMultiDelimiterPattern(s);
+        } else if (s.startsWith("//")) {
+            delimiterPattern = getCustomSingleDelimiterPattern(s);
+        } else {
+            delimiterPattern = Pattern.compile(DEFAULT_DELIMITER);
+        }
+        return delimiterPattern;
+    }
+
+
+    private Pattern getCustomMultiDelimiterPattern(String s) {
+        Pattern delimiterPattern;
+        Pattern delimiterGroupPattern = Pattern.compile("\\[(?<delim>[^]]+)]");
+        Matcher delimGroupMatcher = delimiterGroupPattern.matcher(s);
+        StringBuilder delimBuilder = new StringBuilder();
+        while (delimGroupMatcher.find()) {
+            String delim = delimGroupMatcher.group("delim");
+            if (delimBuilder.length() > 0) delimBuilder.append("|");
+            delimBuilder.append(Pattern.quote(delim));
+        }
+        delimiterPattern = Pattern.compile(delimBuilder.toString());
+        return delimiterPattern;
+    }
+
+    private Pattern getCustomSingleDelimiterPattern(String s) {
+        Pattern delimiterPattern;
+        final String delimiter = s.substring(2, 3);
+        delimiterPattern = Pattern.compile(Pattern.quote(delimiter));
+        return delimiterPattern;
+    }
+
+    private String removeDelimiterPrefix(String s) {
+        String nums;
+        if (s.startsWith("//[")) {
+            nums = s.substring(s.indexOf("\n") + 1);
+        } else if (s.startsWith("//")) {
+            nums = s.substring(4);
+        } else {
+            nums = s;
+        }
+        return nums;
     }
 
     private int sum(String s, Pattern separator) {

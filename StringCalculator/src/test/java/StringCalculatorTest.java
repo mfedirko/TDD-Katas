@@ -104,4 +104,12 @@ public class StringCalculatorTest {
 
         assertEquals(6, res);
     }
+
+
+    @Test
+    void multiplePossibleDelimiters() {
+        int res = calculator.add("//[**][%%]\n1**2%%3");
+
+        assertEquals(6, res);
+    }
 }
