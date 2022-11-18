@@ -20,11 +20,9 @@ public class StringCalculatorTest {
     }
 
     @Test
-    void sumForTwoNumbers() {
-        int res = calculator.add("2,4");
+    void sumForMultipleNumbers() {
+        int res = calculator.add("2,4,6,8,10,12,24");
 
-        assertEquals(6, res);
-
+        assertEquals(2+4+6+8+10+12+24, res);
     }
-
 }

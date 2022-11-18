@@ -3,7 +3,11 @@ public class StringCalculator {
         if (s.isEmpty()) return 0;
         if (s.contains(",")) {
             String[] nums = s.split(",");
-            return Integer.parseInt(nums[0]) + Integer.parseInt(nums[1]);
+            int tot = 0;
+            for (int i = 0; i < nums.length; i++) {
+                tot += Integer.parseInt(nums[i]);
+            }
+            return tot;
         }
         return Integer.parseInt(s);
     }
