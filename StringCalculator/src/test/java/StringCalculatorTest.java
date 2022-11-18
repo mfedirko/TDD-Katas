@@ -39,4 +39,12 @@ public class StringCalculatorTest {
 
         assertEquals(2+4+6+8+10+12+24, res);
     }
+
+    @Test
+    void customDelimiter() {
+        int res = calculator.add("//;\n2;4;6;8;10;12;24");
+
+        assertEquals(2+4+6+8+10+12+24, res);
+
+    }
 }
