@@ -25,4 +25,18 @@ public class StringCalculatorTest {
 
         assertEquals(2+4+6+8+10+12+24, res);
     }
+
+    @Test
+    void newlinesBetweenNumber() {
+        int res = calculator.add("2\n4\n6\n8\n10\n12\n24");
+
+        assertEquals(2+4+6+8+10+12+24, res);
+    }
+
+    @Test
+    void newlinesAndCommasBetweenNumber() {
+        int res = calculator.add("2\n4,6,8\n10,12\n24");
+
+        assertEquals(2+4+6+8+10+12+24, res);
+    }
 }
