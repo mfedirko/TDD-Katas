@@ -1,4 +1,3 @@
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,10 +13,18 @@ public class StringCalculatorTest {
     }
 
     @Test
-    void sumForLiteral() {
+    void sumForSingleNumber() {
         int res = calculator.add("5");
 
         assertEquals(5, res);
+    }
+
+    @Test
+    void sumForTwoNumbers() {
+        int res = calculator.add("2,4");
+
+        assertEquals(6, res);
+
     }
 
 }
