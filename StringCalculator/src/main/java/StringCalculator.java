@@ -1,7 +1,5 @@
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -28,7 +26,9 @@ public class StringCalculator {
         String[] nums = s.split(separator);
         checkForNegatives(nums);
 
-        return getNumStream(nums).reduce(0, Integer::sum);
+        return getNumStream(nums)
+                .filter(n -> n < 1001)
+                .reduce(0, Integer::sum);
     }
 
     private void checkForNegatives(String[] nums) {

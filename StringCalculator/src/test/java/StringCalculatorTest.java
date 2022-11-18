@@ -75,4 +75,11 @@ public class StringCalculatorTest {
 
         assertEquals(2, times);
     }
+
+    @Test
+    void whenNumbersGreaterThan1000_thenIgnored() {
+        int res = calculator.add("1,1021,2,3");
+
+        assertEquals(6, res);
+    }
 }
