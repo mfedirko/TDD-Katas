@@ -59,4 +59,20 @@ public class StringCalculatorTest {
         Assertions.assertThatThrownBy(() -> calculator.add("1,-2,5,-9,3"))
                 .hasMessageContainingAll("-2", "-9");
     }
+
+    @Test
+    void whenNotCalled_thenCalledCountIsZero() {
+        int times = calculator.getCalledCount();
+
+        assertEquals(0, times);
+    }
+
+    @Test
+    void whenCalled_thenCalledCountIsIncremented() {
+        calculator.add("//;\n2;4;6;8;10;12;24");
+        calculator.add("1,2,3");
+        int times = calculator.getCalledCount();
+
+        assertEquals(2, times);
+    }
 }

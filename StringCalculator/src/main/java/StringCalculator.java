@@ -6,7 +6,14 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class StringCalculator {
+    private int calledCount;
+
+    public int getCalledCount() {
+        return calledCount;
+    }
+
     public int add(String s) {
+        calledCount++;
         if (s.isEmpty()) return 0;
         if (s.startsWith("//")) {
             final int prefixLength = 4;
