@@ -1,4 +1,5 @@
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -49,6 +50,20 @@ public class StringCalculatorTest {
     }
 
     @Test
+    void customDelimiterOfAsterisk() {
+        int res = calculator.add("//*\n1*2*3");
+
+        assertEquals(6, res);
+    }
+
+    @Test
+    void customDelimiterOfNewline() {
+        int res = calculator.add("//\n\n1\n2\n3");
+
+        assertEquals(6, res);
+    }
+
+    @Test
     void negativeNumberNotAllowed() {
         Assertions.assertThatThrownBy(() -> calculator.add("1,-2,3"))
                 .hasMessageContaining("-2");
@@ -79,6 +94,22 @@ public class StringCalculatorTest {
     @Test
     void whenNumbersGreaterThan1000_thenIgnored() {
         int res = calculator.add("1,1021,2,3");
+
+        assertEquals(6, res);
+    }
+
+    @Test
+    @Disabled
+    void threeCharDelimiter() {
+        int res = calculator.add("//[***]\n1***2***3");
+
+        assertEquals(6, res);
+    }
+
+    @Test
+    @Disabled
+    void fourCharDelimiter() {
+        int res = calculator.add("//[****]\n1****2****3");
 
         assertEquals(6, res);
     }

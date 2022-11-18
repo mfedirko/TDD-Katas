@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -17,13 +18,13 @@ public class StringCalculator {
             final int prefixLength = 4;
             final String nums = s.substring(prefixLength);
             final String delimiter = s.substring(2, 3);
-            return sum(nums, delimiter);
+            return sum(nums, Pattern.compile(Pattern.quote(delimiter)));
         }
-        return sum(s, ",|\n");
+        return sum(s, Pattern.compile(",|\n"));
     }
 
-    private int sum(String s, String separator) {
-        String[] nums = s.split(separator);
+    private int sum(String s, Pattern separator) {
+        String[] nums = separator.split(s);
         checkForNegatives(nums);
 
         return getNumStream(nums)
