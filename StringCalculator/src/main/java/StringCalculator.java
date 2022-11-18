@@ -1,3 +1,10 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class StringCalculator {
     public int add(String s) {
         if (s.isEmpty()) return 0;
@@ -12,10 +19,27 @@ public class StringCalculator {
 
     private int sum(String s, String separator) {
         String[] nums = s.split(separator);
-        int tot = 0;
-        for (int i = 0; i < nums.length; i++) {
-            tot += Integer.parseInt(nums[i]);
+        checkForNegatives(nums);
+
+        return getNumStream(nums).reduce(0, Integer::sum);
+    }
+
+    private void checkForNegatives(String[] nums) {
+        List<Integer> negatives = findNegatives(nums);
+        if (!negatives.isEmpty()) {
+            throw new IllegalArgumentException("Negative number: " + negatives);
         }
-        return tot;
+    }
+
+    private List<Integer> findNegatives(String[] nums) {
+        return getNumStream(nums)
+                .filter(n -> n < 0)
+                .boxed()
+                .collect(Collectors.toList());
+    }
+
+    private IntStream getNumStream(String[] nums) {
+        return Arrays.stream(nums)
+                .mapToInt(Integer::parseInt);
     }
 }

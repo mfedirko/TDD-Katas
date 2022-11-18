@@ -1,3 +1,4 @@
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -45,6 +46,17 @@ public class StringCalculatorTest {
         int res = calculator.add("//;\n2;4;6;8;10;12;24");
 
         assertEquals(2+4+6+8+10+12+24, res);
+    }
 
+    @Test
+    void negativeNumberNotAllowed() {
+        Assertions.assertThatThrownBy(() -> calculator.add("1,-2,3"))
+                .hasMessageContaining("-2");
+    }
+
+    @Test
+    void multipleNegativeNumbersNotAllowed() {
+        Assertions.assertThatThrownBy(() -> calculator.add("1,-2,5,-9,3"))
+                .hasMessageContainingAll("-2", "-9");
     }
 }
